@@ -1,0 +1,97 @@
+.arabic {
+  direction: rtl;
+  text-align: right;
+}
+.eng {
+  direction: ltr;
+  text-align: left;
+}
+.btext {
+  color: black;
+  font-weight: 300;
+}
+div {
+  color: black;
+  font-weight: 300;
+}
+label {
+  color: black;
+  font-weight: 300;
+  font-size: x-large;
+}
+.card {
+  background-color: white;
+}
+hr {
+  width: 100%;
+}
+body {
+}
+.image-container {
+  position: relative;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image-container:hover .image {
+  opacity: 0.3;
+}
+
+.image-container:hover .middle {
+  opacity: 1;
+}
+
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 115px;
+  left: auto;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+  right: 65px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  columns: darkgrey;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: cornflowerblue;
+}
+
+th {
+  color: black;
+  font-weight: 300;
+}
+td {
+  color: black;
+  font-weight: 300;
+}
+button {
+  color: #fff;
+  background-color: #429cb3;
+  border-color: #72b7c8;
+}

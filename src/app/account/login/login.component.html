@@ -1,0 +1,119 @@
+<div class="wrapper">
+  <section class="section section-lg"></section>
+  <section class="section section-lg"></section>
+
+  <div class="page-header-image"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 offset-lg-0 offset-md-3">
+          <div class="card card-register" style="    margin-left: 300px;
+          background: #272B37;">
+            <div class="card-header">
+              <img alt="Card image" class="card-img" />
+              <img
+                class="profile-pic"
+                src="../../../assets/img/img_avatar.png"
+              />
+            </div>
+            <div class="card-body ml-5">
+              <form class="form arabic" [formGroup]="logform">
+                <div
+                  class="input-group"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.logform.get('Email').valid &&
+                      this.logform.get('Email').touched,
+                    'input-group-focus': focus1 === true
+                  }"
+                >
+                  <div class="input-group-postpend align-self-center">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-email-85"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="البريد الالكترونى"
+                    type="email"
+                    formControlName="Email"
+                    (focus)="focus1 = true"
+                    (blur)="isEmailexist()"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.logform.get('Email').valid &&
+                    this.logform.get('Email').touched
+                  "
+                >
+                  يجب ادخال البريد الألكتروني
+                </div>
+                <div class="text-danger" *ngIf="!isemailexist">
+                  هذا البريد الالكترونى غير موجود
+                </div>
+
+                <div class="text-danger" *ngIf="!isemailconfirmed">
+                  هذا البريد الالكترونى غير مفعل
+                </div>
+                <div
+                  class="input-group"
+                  [ngClass]="{ 'input-group-focus': focus2 === true }"
+                >
+                  <div class="input-group-postpend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-lock-circle"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control arabic"
+                    placeholder="كلمة المرور"
+                    formControlName="Password"
+                    type="password"
+                    (focus)="focus2 = true"
+                    (blur)="focus2 = false"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.logform.get('Password').valid &&
+                    this.logform.get('Password').touched
+                  "
+                >
+                  <div *ngIf="this.logform.get('Password').errors.required">
+                    ادخل كلمة المرور
+                  </div>
+                </div>
+                <div class="form-check text-right">
+                  <label class="form-check-label arabic">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      formControlName="RememberMe"
+                    />
+
+                    <span class="form-check-sign"> </span> تذكرنى
+                  </label>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer align-self-center">
+              <button
+                class="btn btn-success btn-round btn-lg"
+                (click)="login()"
+                [disabled]="
+                  !logform.valid || !isemailexist || !isemailconfirmed
+                "
+              >
+                دخول
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->

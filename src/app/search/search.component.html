@@ -1,0 +1,64 @@
+<section>
+  <form [formGroup]="searchForm" style="align-content: center;">
+    <label>
+      <input
+        id="searchinput"
+        type="text"
+        (keyup)="searchTerm.next($event)"
+        formControlName="search"
+        placeholder="ابحث عن شخص"
+        [(ngModel)]="term"
+      />
+
+      <div *ngIf="loading">
+        <p class="search-message">يتم البحث...</p>
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </label>
+  </form>
+
+  <div>
+    <div class="results" id="results">
+      <tr>
+        <div
+          class="repo"
+          *ngFor="let result of paginationElements | filter: term"
+        >
+          <tr>
+            <td>
+              <a [routerLink]="" (click)="profilecheck(result.userId, result.type)"
+              >{{
+                result.userName
+              }}</a>
+            </td>
+            <p *ngIf="result.type == 1" style="color: #6c757d;">/دكتور</p>
+            <td *ngIf="result.type == 1" style="color: #6c757d;">
+              <img
+                src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.15752-9/94199505_367591010806452_4146059800595136512_n.png?_nc_cat=102&_nc_sid=b96e70&_nc_ohc=FRI0mSM77zcAX9vH3rF&_nc_ht=scontent-hbe1-1.xx&oh=2e918cca91e93a184c04af6ea1b96b29&oe=5F085756"
+                style="width: 20px; height: 25px;"
+              />
+            </td>
+            <td *ngIf="result.type == 0" style="color: #6c757d;">
+              <img
+                src="https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png"
+                style="width: 29px; height: 25px;"
+              />
+            </td>
+          </tr>
+        </div>
+      </tr>
+    </div>
+  </div>
+  <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+
+    <div *ngIf="errorMessage" class="errorMessage">
+        <h2>Error</h2>
+        <p class="error">{{errorMessage}}</p>
+    </div> -->
+</section>

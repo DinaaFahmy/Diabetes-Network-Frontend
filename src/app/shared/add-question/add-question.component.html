@@ -1,0 +1,24 @@
+<div mat-dialog-content class="arabic text-right">
+    <mat-form-field>
+      <mat-label>{{data.key}}</mat-label>
+      <input matInput [(ngModel)]="data.value" />
+      <div style="margin-top: 30px;">
+    <mat-label *ngIf="role=='Patient'">اختر طبيب</mat-label>
+    <mat-select *ngIf="role=='Patient'" (selectionChange)="getDoctorID($event)" >
+      <mat-option value=-1>بدون إشارة لطبيب</mat-option>
+        <mat-option id="dr_list"
+          *ngFor="let item of d_arr"
+          [value]="item.doctor_id">
+        {{ item.doctorName }}
+      </mat-option>
+
+      </mat-select>
+    </div>
+  </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">الغاء</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+      أضف سؤال
+    </button>
+  </div>

@@ -1,0 +1,668 @@
+<!-- <div
+  class="wrapper"
+  style="background-image: url('images/bg-registration-form-2.jpg');"
+>
+  <div class="inner">
+    <div class="container mt-4 mb-4">
+      <h5 style="margin-bottom: 50px; margin-top: -50px; margin-right: 30px;">
+        تسجيل الدخول كمستخدم
+      </h5>
+      <div class="register-container">
+        <div class="col-md-12">
+          <form [formGroup]="regform" (ngSubmit)="registerAsPatient()">
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputEmail1">اسم المستخدم</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('UserName').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="text"
+                  formControlName="UserName"
+                  class="form-control"
+                  id="exampleInputname"
+                  placeholder="إسم المستخدم"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('UserName').valid &&
+                      this.regform.get('UserName').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-6"
+                  *ngIf="
+                    !this.regform.get('UserName').valid &&
+                    this.regform.get('UserName').touched
+                  "
+                >
+                  يجب ادخال الاسم
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputEmail2">البريد الألكتروني</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('Email').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="text"
+                  formControlName="Email"
+                  class="form-control"
+                  id="exampleInputEmail2"
+                  placeholder="البريد الإلكتروني"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Email').valid &&
+                      this.regform.get('Email').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-8"
+                  *ngIf="
+                    !this.regform.get('Email').valid &&
+                    this.regform.get('Email').touched
+                  "
+                >
+                  يجب ادخال البريد الألكتروني
+                </div>
+                <div
+                  class="text-danger col-md-8"
+                  *ngIf="this.regform.get('Email').errors.email"
+                >
+                  البريد الالكتروني غير صحيح
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputPassword1">كلمة المرور</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('Password').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="text"
+                  formControlName="Password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder="كلمة المرور"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Password').valid &&
+                      this.regform.get('Password').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-8"
+                  *ngIf="
+                    !this.regform.get('Password').valid &&
+                    this.regform.get('Password').touched
+                  "
+                >
+                  يجب ادخال كلمة المرور
+                </div>
+                <div
+                  *ngIf="this.regform.get('Password').errors.minlength"
+                  class="text-danger col-md-12"
+                >
+                  الحد الادني لكلمة المرور 6 مقاطع
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputPassword2">تأكيد كلمة المرور</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('ConfirmPassword').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="text"
+                  formControlName="ConfirmPassword"
+                  class="form-control"
+                  id="exampleInputPassword2"
+                  placeholder="تأكيد كلمة المرور"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('ConfirmPassword').valid &&
+                      this.regform.get('ConfirmPassword').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-12"
+                  *ngIf="
+                    !this.regform.get('ConfirmPassword').valid &&
+                    this.regform.get('ConfirmPassword').touched
+                  "
+                >
+                  يجب تأكيد كلمة المرور
+                </div>
+                <div class="text-danger col-md-12" *ngIf="IsPassMatch()">
+                  كلمتان المرور غير متطابقتان
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputphone">رقم الهاتف</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('PhoneNumber').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="text"
+                  formControlName="PhoneNumber"
+                  class="form-control"
+                  id="exampleInputphone"
+                  placeholder="رقم الهاتف"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('PhoneNumber').valid &&
+                      this.regform.get('PhoneNumber').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-12"
+                  *ngIf="
+                    !this.regform.get('PhoneNumber').valid &&
+                    this.regform.get('PhoneNumber').touched
+                  "
+                >
+                  ادخل رقم الهاتف
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputBirthDate">تاريخ الميلاد </label
+                ><label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('BirthDate').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-4">
+                <input
+                  type="number"
+                  formControlName="BirthDate"
+                  name="year"
+                  class="form-control"
+                  id="exampleInputBirthDate"
+                  placeholder="السنة"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('BirthDate').valid &&
+                      this.regform.get('BirthDate').touched
+                  }"
+                />
+              </div>
+              <div class="col-md-4">
+                <input
+                  type="number"
+                  formControlName="BirthDate"
+                  name="month"
+                  class="form-control"
+                  id="exampleInputBirthDate"
+                  placeholder="الشهر"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('BirthDate').valid &&
+                      this.regform.get('BirthDate').touched
+                  }"
+                />
+              </div>
+              <div class="col-md-4">
+                <input
+                  type="number"
+                  formControlName="BirthDate"
+                  name="day"
+                  class="form-control"
+                  id="exampleInputBirthDate"
+                  placeholder="اليوم"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('BirthDate').valid &&
+                      this.regform.get('BirthDate').touched
+                  }"
+                />
+              </div>
+              <div
+                class="text-danger col-md-6"
+                *ngIf="
+                  !this.regform.get('BirthDate').valid &&
+                  this.regform.get('BirthDate').touched
+                "
+              >
+                ادخل تاريخ الميلاد
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputGender">اختر النوع </label
+                ><label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('Gender').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <select
+                    class="form-control form-control-sm"
+                    id="exampleInputGender"
+                    formControlName="Gender"
+                    [ngClass]="{
+                      'is-invalid':
+                        !this.regform.get('Gender').valid &&
+                        this.regform.get('MedicalCondition').touched
+                    }"
+                    (change)="changeGender($event)"
+                  >
+                    <option value="F">أنثى</option>
+                    <option value="M">ذكر</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputWeight">الوزن</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('Weight').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-8">
+                <input
+                  type="number"
+                  formControlName="Weight"
+                  class="form-control"
+                  id="exampleInputWeight"
+                  placeholder="الوزن"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Weight').valid &&
+                      this.regform.get('Weight').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-8"
+                  *ngIf="this.regform.get('Weight').touched"
+                >
+                  ادخل الوزن
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputHeight">الطول</label>
+                <label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('Height').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-8">
+                <input
+                  type="number"
+                  formControlName="Height"
+                  class="form-control"
+                  id="exampleInputHeight"
+                  placeholder="الطول"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Height').valid &&
+                      this.regform.get('Height').touched
+                  }"
+                />
+
+                <div
+                  class="text-danger col-md-8"
+                  *ngIf="this.regform.get('Height').touched"
+                >
+                  ادخل الطول
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputMedcond">اختر حالتك الطبية </label
+                ><label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('MedicalCondition').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <select
+                    class="form-control form-control-sm custom-select"
+                    id="exampleInputMedcond"
+                    formControlName="MedicalCondition"
+                    [ngClass]="{
+                      'is-invalid':
+                        !this.regform.get('MedicalCondition').valid &&
+                        this.regform.get('MedicalCondition').touched
+                    }"
+                    (change)="changeMedCond($event)"
+                  >
+                    <option value="0">Type 1</option>
+                    <option value="1">Type 2</option>
+                    <option value="2">أخرى</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8">
+                <label for="exampleInputLifeStyle">اختر إسلوب المعيشة </label
+                ><label
+                  class="text-danger"
+                  *ngIf="!this.regform.get('LifeStyle').valid"
+                  >*</label
+                >
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <select
+                    class="form-control form-control-sm"
+                    id="exampleInputLifeStyle"
+                    formControlName="LifeStyle"
+                    [ngClass]="{
+                      'is-invalid':
+                        !this.regform.get('LifeStyle').valid &&
+                        this.regform.get('LifeStyle').touched
+                    }"
+                    (change)="changeType($event)"
+                  >
+                    <option value="0">نشيط</option>
+                    <option value="1">معتدل</option>
+                    <option value="2">هادئ</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button
+              style="margin-right: 350px;"
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!regform.valid || IsPassMatch()"
+            >
+              تسجيل
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="btn-login mt-3" style="margin-right: 380px;">
+        لدي حساب
+        <a
+          style="text-decoration: underline; cursor: pointer; color: blue;"
+          routerLink="/login"
+          >دخول
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="wrapper">
+<section class="section section-lg"></section>
+<section class="section section-lg"></section>
+<div class="page-header-image"></div>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 offset-lg-0 offset-md-3">
+        <div class="card card-register" style="    margin-left: 300px;
+        background: #272B37;">
+          <div class="card-header">
+            <img alt="Card image" class="card-img" />
+            <img  class="profile-pic" src="../../../assets/img/img_avatar.png">
+          </div>
+          <div class="card-body">
+            <form class="form arabic" [formGroup]="regform">
+              <div class="input-group" [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('UserName').valid &&
+                      this.regform.get('UserName').touched,
+                    'input-group-focus': focus === true
+                  }">
+                <div class="input-group-postpend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-single-02"> </i>
+                  </div>
+                </div>
+                <input class="form-control" placeholder="*اسم المستخدم" type="text" formControlName="UserName"
+                  (focus)="focus = true" (blur)="focus = false" />
+              </div>
+              <div class="text-danger" *ngIf="
+                    !this.regform.get('UserName').valid &&
+                    this.regform.get('UserName').touched
+                  ">
+                يجب ادخال اسم المستخدم
+              </div>
+
+              <div class="input-group" [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Email').valid &&
+                      this.regform.get('Email').touched,
+                    'input-group-focus': focus1 === true
+                  }">
+                <div class="input-group-postpend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-email-85"> </i>
+                  </div>
+                </div>
+                <input class="form-control" placeholder="*البريد الالكترونى" type="email" formControlName="Email"
+                  (focus)="focus1 = true" (blur)="isEmailexist()" />
+              </div>
+              <div class="text-danger" *ngIf="
+                    !this.regform.get('Email').valid &&
+                    this.regform.get('Email').touched
+                  ">
+                يجب ادخال البريد الألكتروني
+              </div>
+              <div class="text-danger" *ngIf="
+                    isemailexist
+                  ">
+                البريد الالكتروني مستخدم
+              </div>
+
+              <div class="input-group" [ngClass]="{ 'input-group-focus': focus2 === true }">
+                <div class="input-group-postpend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-lock-circle"> </i>
+                  </div>
+                </div>
+                <input class="form-control" placeholder="*كلمة المرور" formControlName="Password" type="password"
+                  (focus)="focus2 = true" (blur)="focus2 = false" />
+              </div>
+              <div class="text-danger" *ngIf="
+                !this.regform.get('Password').valid &&
+                this.regform.get('Password').touched
+              ">
+                <div *ngIf="this.regform.get('Password').errors.required">
+                  ادخل كلمة المرور
+                </div>
+                <div *ngIf="this.regform.get('Password').errors.minlength">
+                  الحد الادني لكلمة المرور 6 مقاطع
+                </div>
+              </div>
+              <div class="text-danger" *ngIf="!ispasswordvalid()">
+                {{errormsg}}
+              </div>
+
+              <div class="input-group" [ngClass]="{ 'input-group-focus': focus3 === true }">
+                <div class="input-group-postpeend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-lock-circle"> </i>
+                  </div>
+                </div>
+                <input class="form-control" placeholder="* تاكيد كلمة المرور" formControlName="ConfirmPassword"
+                  type="password" (focus)="focus3 = true" (blur)="focus3 = false" />
+              </div>
+              <div class="text-danger" *ngIf="
+                !this.regform.get('ConfirmPassword').valid &&
+                this.regform.get('ConfirmPassword').touched
+              ">
+                يجب تأكيد كلمة المرور
+              </div>
+              <div class="text-danger" *ngIf="IsPassMatch()">
+                كلمتا المرور غير متطابقتان
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-postpeend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-calendar-60"> </i>
+                  </div>
+                </div>
+                <input bsDatepicker class="form-control" data-datepicker-color="danger" [bsConfig]="{
+                      isAnimated: true,
+                      containerClass: 'theme-red'
+                    }" formControlName="BirthDate" [(ngModel)]="date" id="datepicker" type="text" name="BirthDate"
+                  placeholder="*تاريخ الميلاد " ng- />
+              </div>
+
+
+              <div class="input-group" [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Weight').valid &&
+                      this.regform.get('Weight').touched,
+                    'input-group-focus': focus5 === true
+                  }">
+                <div class="input-group-postpend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-paper"> </i>
+                  </div>
+                </div>
+                <input class="form-control" placeholder="*الوزن " type="number" formControlName="Weight"
+                  (focus)="focus5 = true" (blur)="focus5 = false" />
+              </div>
+              <div class="text-danger" *ngIf="
+                    !this.regform.get('Weight').valid &&
+                    this.regform.get('Weight').touched
+                  ">
+                يجب ادخال الوزن
+              </div>
+
+              <div class="input-group" [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Height').valid &&
+                      this.regform.get('Height').touched,
+                    'input-group-focus': focus6 === true
+                  }">
+                <div class="input-group-postpend">
+                  <div class="input-group-text">
+                    <i class="tim-icons icon-paper"> </i>
+                  </div>
+                </div>
+                <input class="form-control" placeholder="*الطول " type="number" formControlName="Height"
+                  (focus)="focus6 = true" (blur)="focus6 = false" />
+              </div>
+              <div class="text-danger" *ngIf="
+                    !this.regform.get('Height').valid &&
+                    this.regform.get('Height').touched
+                  ">
+                يجب ادخال الطول
+              </div>
+
+
+              <div class="input-group">
+                <div class="input-group-text">
+                  <div class="input-group-postpend">
+                    <i class="tim-icons icon-badge"> </i>
+                  </div>
+                </div>
+
+                <select matNativeControl required class="form-control form-control form-control-sm custom-select"
+                  id="Gender" name="Gender" (change)="changeGender($event)">
+                  <option value="" disabled selected>النوع</option>
+                  <option class="option1" value="0">M </option>
+                  <option class="option1" value="1">F </option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-text">
+                  <div class="input-group-postpend">
+                    <i class="tim-icons icon-atom"> </i>
+                  </div>
+                </div>
+
+                <select matNativeControl required class="form-control form-control form-control-sm custom-select"
+                  id="exampleInputMedcond1" name="MedicalCondition" (change)="changeMedCond($event)">
+                  <option value="" disabled selected>اختر الحالة الطبية</option>
+                  <option class="option1" value="1">Type1</option>
+                  <option class="option1" value="2">Type2</option>
+                  <option class="option1" value="0">أخرى</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-text">
+                  <div class="input-group-postpend">
+                    <i class="tim-icons icon-user-run"> </i>
+                  </div>
+                </div>
+
+                <select matNativeControl required class="form-control form-control form-control-sm custom-select"
+                  id="exampleInputMedcond" name="LifeStyle" (change)="changeType($event)">
+                  <option value="" disabled selected>اختر اسلوب المعيشة</option>
+
+                  <option class="option1" value="0">نشيط </option>
+                  <option class="option1" value="1">معتدل </option>
+                  <option class="option1" value="2">هادى</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer align-self-center">
+            <button class="btn btn-success btn-round btn-lg" (click)="registerAsPatient()"
+              [disabled]="!regform.valid || IsPassMatch() ||  isemailexist || regmodel.LifeStyle== undefined ||regmodel.MedicalCondetion== undefined ||regmodel.Gender== undefined">
+              تسجيل
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

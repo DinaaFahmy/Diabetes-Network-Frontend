@@ -1,0 +1,13 @@
+<div mat-dialog-content class="arabic">
+  <p class="btext">ادخل {{data.key}}</p>
+  <mat-form-field>
+    <mat-label>{{data.key}}</mat-label>
+    <input matInput [(ngModel)]="data.value" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">الغاء</button>
+  <button mat-button [mat-dialog-close]="data.value" cdkFocusInitial>
+    حسنا
+  </button>
+</div>

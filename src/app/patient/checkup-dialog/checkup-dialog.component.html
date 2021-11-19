@@ -1,0 +1,200 @@
+<div>
+  <div class="col-md-12 arabic justify-content-center">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+      اضافة او تعديل فحص
+    </h3>
+    <form [formGroup]="checkupForm">
+      <div class="form-group row arabic justify-content-center mt-4">
+        <label for="text" class="col-4 col-form-label">نوع الفحص</label>
+        <div class="col-8">
+          <select
+            matNativeControl
+            required
+            class="col-10 col-form-label form-control custom-select"
+            id="type"
+            name="type"
+            required="required"
+            formControlName="type"
+            (change)="changetype($event)"
+          >
+            <option
+              value=""
+              disabled
+              [selected]="this.checkup.checkupType == null"
+              >اختر نوع الفحص</option
+            >
+            <option
+              class="option1"
+              value="1"
+              [selected]="this.checkup.checkupType == 1"
+              >رمد</option
+            >
+            <option
+              class="option1"
+              value="2"
+              [selected]="this.checkup.checkupType == 2"
+              >اوعية دموية</option
+            >
+            <option
+              class="option1"
+              value="3"
+              [selected]="this.checkup.checkupType == 3"
+              >ضغط دم</option
+            >
+            <option
+              class="option1"
+              value="4"
+              [selected]="this.checkup.checkupType == 4"
+              >كوليسترول</option
+            >
+            <option
+              class="option1"
+              value="5"
+              [selected]="this.checkup.checkupType == 5"
+              >كشف اسنان</option
+            >
+            <option
+              class="option1"
+              value="0"
+              [selected]="this.checkup.checkupType == 6"
+              >أخرى</option
+            >
+          </select>
+        </div>
+      </div>
+
+      <div
+        class="text-danger"
+        *ngIf="
+          !this.checkupForm.get('type').valid &&
+          this.checkupForm.get('type').touched
+        "
+      >
+        برجاء اختيار نوع الفحص
+      </div>
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">تفاصيل</label>
+        <div class="col-8">
+          <input
+            class="col-10 col-form-label"
+            id="note"
+            name="note"
+            type="text"
+            formControlName="note"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">تاريخ الفحص</label>
+        <div class="col-8">
+          <input
+            bsDatepicker
+            class="form-control col-10"
+            data-datepicker-color="danger"
+            [bsConfig]="{
+              isAnimated: true,
+              containerClass: 'theme-red'
+            }"
+            [placeholder]="this.checkup.date | date"
+            [value]="this.checkup.date"
+            formControlName="date"
+            id="datepicker"
+            type="text"
+            name="date"
+            ng-
+          />
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            !this.checkupForm.get('date').valid &&
+            this.checkupForm.get('date').touched
+          "
+        >
+          برجاء اختيار ميعاد الفحص
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">نتيجة الفحص</label>
+        <div class="col-8">
+          <input
+            class="col-10 col-form-label"
+            type="text"
+            id="resultData"
+            formControlName="resultData"
+            name="resultData"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">حالة الفحص</label>
+        <div class="col-8">
+          <select
+            matNativeControl
+            required
+            class="col-10 col-form-label form-control custom-select"
+            id="status"
+            name="status"
+            required="required"
+            formControlName="status"
+            (change)="changestatus($event)"
+          >
+            <option value="" disabled [selected]="this.checkup.status == null"
+              >اختر حالة الفحص</option
+            >
+            <option
+              *ngIf="this.checkupForm.value.date < todaydate"
+              class="option1"
+              value="2"
+              [selected]="this.checkup.status == 2"
+              >تم</option
+            >
+            <option
+              [selected]="this.checkupForm.value.date < todaydate"
+              class="option1"
+              value="1"
+              [selected]="this.checkup.status == 1"
+              >لم يتم بعد</option
+            >
+          </select>
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            this.checkup.checkupType == null &&
+            this.checkupForm.get('status').touched
+          "
+        >
+          برجاء اختيار حالة الفحص
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-4 col-8"></div>
+      </div>
+    </form>
+    <div mat-dialog-actions>
+      <button
+        name="submit"
+        class="btn btn-success"
+        id="Editbtn"
+        [hidden]="!this.data.flag"
+        [disabled]="!checkupForm.valid"
+        (click)="Update()"
+        [mat-dialog-close]
+      >
+        تعديل
+      </button>
+      <button
+        name="submit"
+        class="btn btn-success mr-3"
+        id="Addbtn"
+        [hidden]="this.data.flag"
+        [disabled]="!checkupForm.valid"
+        (click)="Add()"
+        [mat-dialog-close]="checkup"
+      >
+        اضافة
+      </button>
+    </div>
+  </div>
+</div>

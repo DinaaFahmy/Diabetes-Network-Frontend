@@ -1,0 +1,182 @@
+<!-- <section class="section section-lg"></section> -->
+<div class="container register-page" style="background: transparent;">
+  <div class="profile-page tx-13">
+    <div class="row">
+      <div class="wrapper nclass" style="margin-left: 15%; width: 100%;">
+        <div class="row">
+          <div class="leftcolumn" style="margin-top: 5%;">
+            <div *ngFor="let pt of p_arr; let i = index">
+              <div class="card" name="post_card" style="opacity: 85%;">
+                <div class="card-header row">
+                  <button
+                    class="col-2"
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                    style="color: black; justify-self: left;"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button
+                      mat-menu-item
+                      [value]="pt.postId"
+                      (click)="savePost($event)"
+                    >
+                      <mat-icon> save</mat-icon>
+                      <span>حفظ</span>
+                    </button>
+                    <button mat-menu-item (click)="deletpost(i)">
+                      <mat-icon>delete_outline</mat-icon>
+                      <span>حذف</span>
+                    </button>
+                  </mat-menu>
+                  <!-- <h6 hidden>{{ pt.postId }}</h6> -->
+                  <div class="col-10">
+                    <h2
+                      class="username"
+                      id="{{ pt.userID }}"
+                      (click)="profilecheck(pt.userID, pt.role)"
+                    >
+                      {{ pt.userName }}
+                    </h2>
+                    <h6>{{ pt.date | date }}</h6>
+                    <h5>التصنيف: {{ pt.categoryName }}</h5>
+                    <h6>الحالة: {{ pt.reactionName }}</h6>
+                  </div>
+                </div>
+                <p>{{ pt.content }}</p>
+              </div>
+
+              <div
+                class="card-footer"
+                style="margin-top: -32px; background: white;"
+              >
+                <div class="d-flex post-actions">
+                  <a
+                    href="javascript:;"
+                    class="d-flex align-items-center text-muted mr-4"
+                    (click)="openDialog2(pt.postId, i, 'تعليقك')"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-message-square icon-md"
+                    >
+                      <path
+                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                      ></path>
+                    </svg>
+                    <p class="d-none d-md-block ml-2" style="color: black;">
+                      تعليق
+                    </p>
+                  </a>
+                </div>
+                <div
+                  *ngFor="let c of pt.comments; let ii = index"
+                  class="mt-5 mr-3 rounded-circle"
+                >
+                  <mat-card
+                    class="mt-2 arabic"
+                    style="background-color: rgb(240, 232, 232);"
+                  >
+                    <div
+                      class="card-header row"
+                      style="padding: 0px; background-color: transparent;"
+                    >
+                      <div class="col-10">
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title
+                          style="font-size: medium; color: black;"
+                          >{{ c.userName }}</mat-card-title
+                        >
+                        <mat-card-subtitle>{{
+                          c.date | date
+                        }}</mat-card-subtitle>
+                      </div>
+                      <button
+                        class="col-2"
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                        aria-label="Example icon-button with a menu"
+                        style="margin: 0px;"
+                      >
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button
+                          mat-menu-item
+                          (click)="deletecomment(i, ii, c.id)"
+                        >
+                          <mat-icon>delete_outline</mat-icon>
+                          <span>حذف</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+
+                    <mat-card-content class="mt-2">
+                      {{ c.comment }}
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn"
+              (click)="showMore()"
+              style="
+                background-color: rgb(31, 21, 21);
+                display: block;
+                width: 100%;
+              "
+              name="showMore"
+            >
+              إعرض المزيد
+            </button>
+          </div>
+
+          <div class="rightcolumn" style="margin-top: 5%;">
+            <div class="card" id="card_ctg">
+              <h3>التصنيفات</h3>
+              <!-- <hr /> -->
+              <form style="width: 100%;">
+                <button
+                  (click)="clickItem($event.target)"
+                  *ngFor="let item of c"
+                  class="btn_ctg"
+                  style="background-color: transparent; display: block;"
+                  [value]="item.categoryId"
+                  name="ctg_btn"
+                >
+                  {{ item.categoryName }}
+                </button>
+
+                <input
+                  name="b"
+                  type="submit"
+                  id="btn_sub"
+                  class="btn btn-primary"
+                  style="margin: 20px; width: 100px; background: #db4453;"
+                  (click)="filterposts()"
+                  value="فلترة "
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <h2>Copyright © Gluco-Media 2020</h2>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>

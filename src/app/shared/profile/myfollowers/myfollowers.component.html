@@ -1,0 +1,43 @@
+<div class="col-lg-9 tm-section-header-container margin-bottom-30" id="my_f">
+  <h2 class="tm-section-header gold-text tm-handwriting-font">كل المتابعين</h2>
+  <div class="tm-hr-container">
+    <hr class="tm-hr" />
+  </div>
+
+  <div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="بحث"
+        [(ngModel)]="userName"
+      />
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>الصورة</td>
+          <td>الأسم</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of drfollowers | filter: userName"
+          style="color: black;"
+        >
+          <td>
+            <img
+              id="fimg"
+              src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png"
+            />{{ item.img }}
+          </td>
+          <td style="color: black;">
+            <a [href]="'profile/' + item.userID + '/false'">{{
+              item.user_name
+            }}</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

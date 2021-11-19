@@ -1,0 +1,26 @@
+.arabic {
+    direction: rtl;
+    text-align: right;
+  }
+  div,td {
+    color: black;
+    font-weight: 150;
+    /* border-radius: 50px; */
+  }
+  label,td {
+    color: black;
+    font-weight: 150;
+    font-size: large;
+   
+  }
+  h1{
+    color: black;
+    font-weight: 300;
+    font-size: xx-large;
+    text-align: center;
+    margin-top:-30px;
+  }
+  .uname:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }

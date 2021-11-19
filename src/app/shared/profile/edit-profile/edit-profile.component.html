@@ -1,0 +1,334 @@
+<section class="section section-lg" style="height: 5rem;"></section>
+<div class="row justify-content-center">
+  <div class="col-sm-6 col-8 arabic" style="background: transparent;">
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <div class="card-title mb-4">
+          <div class="d-flex justify-content-start">
+            <div class="image-container">
+              <section style="width: 150px; height: 150px;"></section>
+              <div class="middle">
+                <input
+                  type="button"
+                  class="btn btn-secondary"
+                  id="btnChangePicture"
+                  value="Change"
+                />
+                <input
+                  type="file"
+                  style="display: none;"
+                  id="profilePicture"
+                  name="file"
+                />
+              </div>
+            </div>
+            <div class="userData mr-3 align-self-center">
+              <h2
+                class="d-block"
+                style="font-size: 1.5rem; color: black; font-weight: bold;"
+              >
+                <a href="javascript:void(0);">{{ patientprofile.user_name }}</a>
+              </h2>
+            </div>
+            <div class="ml-auto">
+              <input
+                type="button"
+                class="btn btn-primary d-none"
+                id="btnDiscard"
+                value="Discard Changes"
+              />
+            </div>
+          </div>
+        </div>
+        <tabset class="nav-tabs-defualt btext">
+          <tab>
+            <ng-template tabHeading style="background: #db4453;">
+              <i class="tim-icons icon-spaceship btext"> </i>
+              <span> البيانات الشخصية</span>
+            </ng-template>
+            <div class="col-12 mt-3">
+              <div>
+                <div class="tab-content ml-1" id="myTabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="basicInfo"
+                    role="tabpanel"
+                    aria-labelledby="basicInfo-tab"
+                  >
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">الاسم</label>
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.user_name }}
+                      </div>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          (click)="openDialog('user_name', 'الاسم')"
+                          >تعديل</a
+                        >
+                      </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">كلمة المرور</label>
+                      </div>
+                      <div class="col">
+                        *****************
+                        {{ patientprofile.password }}
+                      </div>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          (click)="opendialogpassword()"
+                          >تعديل</a
+                        >
+                      </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                      <div class="col-md-3 col-12">
+                        <label style="font-weight: bold;"
+                          >عنوان البريد الالكترونى</label
+                        >
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.email }}
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">النقاط</label>
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.points }}
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-md-3 col-12">
+                        <label style="font-weight: bold;">رقم الهاتف</label>
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.phone_number }}
+                      </div>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          (click)="openDialog('phone_number', 'رقم الهاتف')"
+                          >تعديل</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab>
+            <ng-template tabHeading>
+              <i class="tim-icons icon-bag-16"> </i> البيانات الطبية
+            </ng-template>
+            <div class="col-12 mt-3">
+              <div>
+                <div class="tab-content ml-1" id="myTabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="basicInfo"
+                    role="tabpanel"
+                    aria-labelledby="basicInfo-tab"
+                  >
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">الوزن</label>
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.weight }}
+                      </div>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          (click)="openDialog('weight', 'الوزن')"
+                          >تعديل</a
+                        >
+                      </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">الطول</label>
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.height }}
+                      </div>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          (click)="openDialog('height', 'الطول')"
+                          >تعديل</a
+                        >
+                      </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">العمر</label>
+                      </div>
+                      <div class="col">
+                        {{ age }}
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="font-weight: bold;">النوع</label>
+                      </div>
+                      <div class="col">
+                        {{ patientprofile.gender }}
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-md-3 col-12">
+                        <label style="font-weight: bold;">HbA1C</label>
+                      </div>
+                      <div class="col">
+                        التاريخ | {{ patientprofile.testDate | date }}---
+                        النتيجة |
+                        {{ patientprofile.testResult }}
+                      </div>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          (click)="addtest()"
+                          >اضافة</a
+                        >
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <label style="font-weight: bold;" class="col-12 col-md-10"
+                        >ميعاد اخر فحص دورى
+                      </label>
+                      <div class="col-12 col-md-2">
+                        <a
+                          style="cursor: pointer; color: royalblue;"
+                          [routerLink]="['/checkups']"
+                          >تعديل</a
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-2 col-md-3 col-12">
+                        <label style="font-weight: bold;">نوع الفحص</label>
+                      </div>
+                      <div>{{ this.checkuptype }}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-2 col-md-3 col-12">
+                        <label style="font-weight: bold;">تاريخ الفحص </label>
+                      </div>
+                      <div>
+                        {{ patientprofile.checkupDate | date }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-2 col-md-3 col-12">
+                        <label style="font-weight: bold;">نتيجة الفحص</label>
+                      </div>
+                      <div>{{ patientprofile.checkupData }}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-2 col-md-3 col-12">
+                        <label style="font-weight: bold;">ملاحظات</label>
+                      </div>
+                      <div>{{ patientprofile.checkupNotes }} |</div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-2 col-md-3 col-12">
+                      <label style="font-weight: bold;">الأدوية</label>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-4">
+                      <label style="font-weight: bold;">الجرعة</label>
+                    </div>
+                    <div class="col-sm-2 col-md-4 col-6">
+                      <label style="font-weight: bold;">ملاحظات</label>
+                    </div>
+
+                    <div class="col-12 col-md-2">
+                      <a
+                        style="cursor: pointer; color: royalblue;"
+                        (click)="AddDrug()"
+                        >اضافة</a
+                      >
+                    </div>
+                  </div>
+                  <br />
+                  <div *ngFor="let drug of patientprofile.drugs" class="row">
+                    <div class="col-sm-2 col-md-3 col-12">
+                      {{ drug.drugName }}
+                    </div>
+
+                    <div class="col-sm-2 col-md-2 col-4">
+                      {{ drug.dosage }}
+                    </div>
+                    <div class="col-sm-2 col-md-4 col-6">
+                      {{ drug.note }}
+                    </div>
+                    <div class="">
+                      <a
+                        class="col-6 col-md-1"
+                        style="cursor: pointer; color: royalblue;"
+                        (click)="EditDrug(drug)"
+                      >
+                        تعديل
+                      </a>
+                      <a
+                        class="col-6 col-md-1"
+                        style="cursor: pointer; color: royalblue;"
+                        (click)="DeleteDrug(drug)"
+                        >حذف</a
+                      >
+                    </div>
+                  </div>
+
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3 col-md-2 col-8">
+                      <label style="font-weight: bold;"
+                        >معدل القيام بالأنشطة</label
+                      >
+                    </div>
+
+                    <div class="col-sm-3 col-md-8 col-4">
+                      {{ this.style }}
+                    </div>
+                    <div class="col-12 col-md-2">
+                      <a
+                        style="cursor: pointer; color: royalblue;"
+                        (click)="EditLifeStyle()"
+                        >تعديل</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+      <button *ngIf="flag" class="btn btn-success btn-round" (click)="Submit()">
+        تاكيد التعديلات
+      </button>
+    </div>
+  </div>
+</div>

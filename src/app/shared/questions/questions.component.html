@@ -1,0 +1,134 @@
+<!-- <mat-tab-group>
+      <mat-tab label="الاسئلة المشار لي فيها"> -->
+<!-- <section class="section section-lg" *ngIf="mention"></section> -->
+<div class="container">
+  <div class="col-md-12">
+    <mat-card
+      class="example-card-for mt-2"
+      class="arabic mb-2 shadow-lg col-9"
+      *ngFor="let qus of questions; let i = index"
+      style="opacity: 90%;"
+    >
+      <div
+        class="card-header row"
+        style="padding: 0px; background-color: transparent;"
+      >
+        <div class="col-10">
+          <div mat-card-avatar class="example-header-image">
+            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" />
+          </div>
+
+          <mat-card-title style="font-size: medium;">{{
+            qus.userName
+          }}</mat-card-title>
+          <mat-card-subtitle>{{ qus.date | date }}</mat-card-subtitle>
+        </div>
+        <button
+          class="col-2"
+          mat-icon-button
+          [matMenuTriggerFor]="menu1"
+          aria-label="Example icon-button with a menu"
+          style="color: black; margin: 0px;"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu1="matMenu">
+          <button mat-menu-item (click)="deleteQuestion(i, qus.id)">
+            <mat-icon>delete_outline</mat-icon>
+            <span>حذف</span>
+          </button>
+        </mat-menu>
+
+        <!-- <p>Feel {{post.reactionName}}</p>
+      <p>type {{post.categoryName}}</p> -->
+      </div>
+      <mat-card-content>
+        <p class="btext">
+          {{ qus.question }}
+        </p>
+      </mat-card-content>
+
+      <div class="row">
+        <div class="pull-right reply col-2">
+          <button mat-button>
+            <a
+              style="cursor: pointer; color: royalblue; margin-top: 5px;"
+              (click)="openDialog(qus.id, i, 'اجابتك')"
+              ><span><i class="fa fa-reply"></i> أضافة اجابة</span></a
+            >
+          </button>
+        </div>
+        <div class="col-3">
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            style="color: royalblue;"
+          >
+            فلترة الاجابات : {{ filter[i] }}
+          </button>
+        </div>
+      </div>
+      <hr style="width: 100%;" />
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="getdocans(qus.id, i)">
+          أجابات الاطباء
+        </button>
+        <button mat-menu-item (click)="getuserans(qus.id, i)">
+          اجابات المستخدمين
+        </button>
+        <button mat-menu-item (click)="getallanss(qus.id, i)">
+          جميع الأجابات
+        </button>
+
+        <button mat-menu-item (click)="noans(i)">بدون اجابات</button>
+      </mat-menu>
+      <div
+        *ngFor="let Ans of qus.answers; let ii = index"
+        class="mt-2 mr-5 rounded-circle"
+      >
+        <mat-card class="mt-2" style="background-color: rgb(240, 232, 232);">
+          <div
+            class="card-header row"
+            style="padding: 0px; background-color: transparent;"
+          >
+            <div class="col-10">
+              <div
+                mat-card-avatar
+                class="example-header-image"
+                align="end"
+              ></div>
+
+              <mat-card-title
+                style="font-size: medium;"
+                (click)="GoTOprofile(Ans.role, Ans.userID)"
+                >{{ Ans.userName }}</mat-card-title
+              >
+              <mat-card-subtitle>{{ Ans.date | date }}</mat-card-subtitle>
+            </div>
+            <button
+              class="col-2"
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+              style="color: black; margin: 0px;"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="deleteAnswer(i, ii, Ans.id)">
+                <mat-icon>delete_outline</mat-icon>
+                <span>حذف</span>
+              </button>
+            </mat-menu>
+          </div>
+
+          <mat-card-content class="mt-2">
+            {{ Ans.answer }}
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<!-- </mat-tab>
+    </mat-tab-group> -->

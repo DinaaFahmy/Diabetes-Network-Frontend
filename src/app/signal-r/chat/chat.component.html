@@ -1,0 +1,77 @@
+<section class="section section-lg" style="height: 5rem;"></section>
+<div class="row">
+  <!-- <div class="leftcolumn fixed-top" style="width: 25%; min-height: ;">
+    <div class="card">
+      <div class="card shadow-lg">
+        <h3
+          class="card-header text-center font-weight-bold text-uppercase py-4"
+        >
+          مراسلات
+        </h3>
+        <div class="card-body row">
+          <button
+            *ngFor="let chat of chats"
+            class="col-12"
+            (click)="gotoChat(chat.userId)"
+          >
+            <p>{{ chat.userName }}</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="rightcolumn" style="width: 100%;">
+    <div class="row justify-content-center trans" style="text-align: right;">
+      <div class="col-md-12 col-12 col-lg-6 col-sm-12">
+        <div class="card shadow-lg">
+          <h3
+            class="card-header text-center font-weight-bold text-uppercase py-4"
+          >
+            مراسلات
+          </h3>
+          <div class="card-body row">
+            <div
+              id="table"
+              *ngFor="let msg of this.chat"
+              class="table-editable btext"
+              [class]="getclass(msg.userId)"
+              class="col-12 col-md-12"
+            >
+              <div
+                style="
+                  border-radius: 5px;
+                  max-width: 70%;
+                  padding: 1%;
+                  padding-bottom: 0%;
+                "
+                [style.background-color]="getcolor(msg.userId)"
+                class="mt-1"
+              >
+                <span style="font-size: small;">{{
+                  this.GetName(msg.userId)
+                }}</span>
+                <p>
+                  {{ msg.msgContent }}
+                </p>
+                <span style="font-size: small;">{{
+                  msg.date | date: "medium"
+                }}</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <input class="col-9 mr-2" [(ngModel)]="this.text" type="text" />
+            <button
+              (click)="SendMsg()"
+              name="submit"
+              class="btn btn-success btn-round col-2"
+              id="Editbtn"
+            >
+              رد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

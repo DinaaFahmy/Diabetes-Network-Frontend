@@ -1,0 +1,252 @@
+<div class="wrapper">
+  <section class="section section-lg"></section>
+  <section class="section section-lg"></section>
+  <div class="page-header-image"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 offset-lg-0 offset-md-3">
+          <div class="card card-register" style="    margin-left: 300px;
+          background: #272B37;">
+            <div class="card-header">
+              
+              <img alt="Card image" class="card-img" />
+              <img  class="profile-pic" src="../../../assets/img/dr_av.jpg">
+
+            </div>
+            <div class="card-body">
+              <form class="form arabic" [formGroup]="regform">
+                <div
+                  class="input-group"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('UserName').valid &&
+                      this.regform.get('UserName').touched,
+                    'input-group-focus': focus === true
+                  }"
+                >
+                  <div class="input-group-postpeend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-single-02"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="*اسم المستخدم"
+                    type="text"
+                    formControlName="UserName"
+                    (focus)="focus = true"
+                    (blur)="focus = false"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.regform.get('UserName').valid &&
+                    this.regform.get('UserName').touched
+                  "
+                >
+                  يجب ادخال اسم المستخدم
+                </div>
+
+                <div
+                  class="input-group"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Email').valid &&
+                      this.regform.get('Email').touched,
+                    'input-group-focus': focus1 === true
+                  }"
+                >
+                  <div class="input-group-postpeend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-email-85"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="*البريد الالكترونى"
+                    type="email"
+                    formControlName="Email"
+                    (focus)="focus1 = true"
+                    (blur)="isEmailexist()"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.regform.get('Email').valid &&
+                    this.regform.get('Email').touched
+                  "
+                >
+                  يجب ادخال البريد الألكتروني
+                </div>
+
+                <div
+                class="text-danger"
+                *ngIf="
+                isemailexist
+                "
+              >
+                هذا البريد الالكترونى مستخدم
+              </div>
+
+                <div
+                  class="input-group"
+                  [ngClass]="{ 'input-group-focus': focus2 === true }"
+                >
+                  <div class="input-group-postpeend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-lock-circle"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="*كلمة المرور"
+                    formControlName="Password"
+                    type="password"
+                    (focus)="focus2 = true"
+                    (blur)="focus2 = false"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.regform.get('Password').valid &&
+                    this.regform.get('Password').touched
+                  "
+                >
+                  <div *ngIf="this.regform.get('Password').errors.required">
+                    ادخل كلمة المرور
+                  </div>
+                  <div *ngIf="this.regform.get('Password').errors.minlength">
+                    الحد الادني لكلمة المرور 6 مقاطع
+                  </div>
+                  
+                </div>
+                <div 
+                class="text-danger"
+                *ngIf="!ispasswordvalid()">
+                  {{errormsg}}
+                </div>
+
+                <div
+                  class="input-group"
+                  [ngClass]="{ 'input-group-focus': focus3 === true }"
+                >
+                  <div class="input-group-postpeend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-lock-circle"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="* تاكيد كلمة المرور"
+                    formControlName="ConfirmPassword"
+                    type="password"
+                    (focus)="focus3 = true"
+                    (blur)="focus3 = false"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.regform.get('ConfirmPassword').valid &&
+                    this.regform.get('ConfirmPassword').touched
+                  "
+                >
+                  يجب تأكيد كلمة المرور
+                </div>
+                <div class="text-danger" *ngIf="IsPassMatch()">
+                  كلمتا المرور غير متطابقتان
+                </div>
+
+                <div
+                  class="input-group"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('PhoneNumber').valid &&
+                      this.regform.get('PhoneNumber').touched,
+                    'input-group-focus': focus4 === true
+                  }"
+                >
+                  <div class="input-group-postpeend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-mobile"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="* رقم الهاتف"
+                   type="text"
+                    formControlName="PhoneNumber"
+                    (focus)="focus4 = true"
+                    (blur)="focus4 = false"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.regform.get('PhoneNumber').valid &&
+                    this.regform.get('PhoneNumber').touched
+                  "
+                >
+                  يجب ادخال رقم الهاتف
+                </div>
+
+                <div
+                  class="input-group"
+                  [ngClass]="{
+                    'is-invalid':
+                      !this.regform.get('Address').valid &&
+                      this.regform.get('Address').touched,
+                    'input-group-focus': focus5 === true
+                  }"
+                >
+                  <div class="input-group-postpeend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-istanbul"> </i>
+                    </div>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="* عنوان مقدم الخدمة الطبية"
+                    type="text"
+                    formControlName="Address"
+                    (focus)="focus5 = true"
+                    (blur)="focus5 = false"
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    !this.regform.get('Address').valid &&
+                    this.regform.get('Address').touched
+                  "
+                >
+                  يجب ادخال العنوان
+                </div>
+              </form>
+            </div>
+            <div class="card-footer align-self-center">
+              <button
+                class="btn btn-success btn-round btn-lg"
+                (click)="registerAsDoctor()"
+                [disabled]="!regform.valid || IsPassMatch() ||  isemailexist || !ispasswordvalid()"
+              >
+               تسجيل
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="square square-1" id="square1"></div>
+      <div class="square square-2" id="square2"></div>
+      <div class="square square-3" id="square3"></div>
+      <div class="square square-4" id="square4"></div>
+      <div class="square square-5" id="square5"></div>
+      <div class="square square-6" id="square6"></div>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>

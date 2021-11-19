@@ -1,0 +1,82 @@
+<!-- Editable table -->
+<section class="section section-lg" style="height: 5rem;"></section>
+
+<div class="row justify-content-center trans">
+  <div class="col-md-12 col-12 col-lg-6 col-sm-12 arabic">
+    <div class="card shadow-lg">
+      <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+        الفحوصات
+      </h3>
+      <div class="card-body row">
+        <div id="table" class="table-editable btext" style="width:100%">
+          <table
+            class="table table-bordered table-responsive-md table-striped text-center"
+          >
+            <thead>
+              <tr class="row ml-1 mr-1">
+                <th class="text-center col">نوع الفحص</th>
+                <th class="text-center col-3 col-sm-2">تفاصيل</th>
+                <th class="text-center col">تاريخ الفحص</th>
+                <th class="text-center col">نتيجة الفحص</th>
+                <th class="text-center col">حالة الفحص</th>
+                <th class="text-center col d-none d-sm-block"></th>
+                <th class="text-center col d-none d-sm-block"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr class="row ml-1 mr-1" *ngFor="let x of model">
+                  <td class="pt-3-half col">
+                    {{ x.checkupTypeName }}
+                  </td>
+                  <td class="pt-3-half col-3 col-sm-2">
+                    {{ x.notes }}
+                  </td>
+                  <td class="pt-3-half col">{{ x.date | date }}</td>
+                  <td class="pt-3-half col">
+                    {{ x.resultData }}
+                  </td>
+                  <td class="pt-3-half col">
+                    {{ x.statusName }}
+                  </td>
+                  <td class="pt-3-half col-md col-6">
+                    <button
+                      class="btn btn-success btn-round col-12 text-wrap"
+                      (click)="edit(x)"
+                    >
+                      تعديل
+                    </button>
+                  </td>
+                  <td class="pt-3-half col-md col-6">
+                    <button
+                      class="btn btn-success btn-round col-12 text-wrap"
+                      (click)="delete(x)"
+                    >
+                      حذف
+                    </button>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <button
+          name="submit"
+          class="btn btn-success btn-round"
+          id="Editbtn"
+          (click)="add()"
+        >
+          اضافة
+        </button>
+      </div>
+    </div>
+    <!-- <button
+      name="submit"
+      class="btn btn-success btn-round"
+      id="Editbtn"
+      (click)="addtest()"
+    >
+      اضافة
+    </button> -->
+  </div>
+</div>

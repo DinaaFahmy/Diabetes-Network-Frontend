@@ -1,0 +1,97 @@
+<div>
+  <div class="col-md-12 arabic justify-content-center">
+    <div class="arabic">
+      <h3 style="color: blue;">تعديل او اضافة دواء</h3>
+      <form [formGroup]="DrugForm">
+        <div class="form-group row arabic justify-content-center mt-4">
+          <label for="text" class="col-4 col-form-label">الدواء</label>
+
+          <div class="col-8">
+            <select
+              matNativeControl
+              required
+              class="col-10 col-form-label form-control custom-select"
+              id="type"
+              name="type"
+              required="required"
+              formControlName="type"
+              (change)="changetype($event)"
+            >
+              <option *ngFor="let Drug of Drugs" [value]="Drug.drugId">{{
+                Drug.drugName
+              }}</option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            !this.DrugForm.get('type').valid &&
+            this.DrugForm.get('type').touched
+          "
+        >
+          برجاء اختيار نوع الدواء
+        </div>
+
+        <div class="form-group row">
+          <label for="text" class="col-4 col-form-label">تفاصيل</label>
+          <div class="col-8">
+            <input
+              class="col-10 col-form-label"
+              id="note"
+              name="note"
+              type="text"
+              formControlName="note"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="text" class="col-4 col-form-label">الجرعة </label>
+          <div class="col-8">
+            <input
+              class="col-10 col-form-label"
+              type="number"
+              id="dose"
+              formControlName="dose"
+              name="dose"
+            />
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              !this.DrugForm.get('dose').valid &&
+              this.DrugForm.get('dose').touched
+            "
+          >
+            برجاء ادخال نتيجة الجرعة
+          </div>
+        </div>
+      </form>
+      <div mat-dialog-actions>
+        <button
+          *ngIf="!flag"
+          name="submit"
+          class="btn btn-success"
+          id="Addbtn"
+          [disabled]="!DrugForm.valid"
+          (click)="Add()"
+          [mat-dialog-close]="drug"
+        >
+          اضافة
+        </button>
+        <button
+          *ngIf="flag"
+          name="submit"
+          class="btn btn-success"
+          id="Addbtn"
+          [disabled]="!DrugForm.valid"
+          (click)="Add()"
+          [mat-dialog-close]="drug"
+        >
+          تعديل
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

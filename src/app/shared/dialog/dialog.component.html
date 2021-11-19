@@ -1,0 +1,18 @@
+<div mat-dialog-content class="arabic">
+  <h3 style="color: blue;">أدخل {{ data.key }}</h3>
+  <label>{{ data.key }}</label>
+  <input class="col m-0" [(ngModel)]="value" name="Address" />
+</div>
+<div mat-dialog-actions class="arabic">
+  <button mat-button class="col mr-1" (click)="onNoClick()">الغاء</button>
+  <div class="col"></div>
+  <button
+    mat-button
+    class="col ml-1"
+    (click)="onClick(value)"
+    [mat-dialog-close]="value"
+    cdkFocusInitial
+  >
+    حسنا
+  </button>
+</div>

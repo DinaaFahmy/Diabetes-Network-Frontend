@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+  <p>أدخل الشهادة</p>
+  <mat-form-field>
+    <mat-label>الشهادة</mat-label>
+    <input matInput [(ngModel)]="data.Certificate" />
+  </mat-form-field>
+  <p>ادخل الجامعة</p>
+  <mat-form-field>
+    <mat-label>الجامعة</mat-label>
+    <input matInput [(ngModel)]="data.University" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">الغاء</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>حسنا</button>
+</div>

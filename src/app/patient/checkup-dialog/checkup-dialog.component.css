@@ -1,0 +1,8 @@
+.arabic {
+  direction: rtl;
+  text-align: right;
+}
+.btext {
+  color: black;
+  font-weight: 300;
+}

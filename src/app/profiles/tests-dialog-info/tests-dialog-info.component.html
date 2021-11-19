@@ -1,0 +1,113 @@
+<section class="section section-lg" style="height: 5rem;"></section>
+
+<div mat-dialog-content class="row justify-content-center trans">
+  <div class="col-md-12 col-12 col-lg-12 col-sm-12 arabic">
+    <div class="card shadow-lg">
+      <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+        عشوائي
+      </h3>
+      <div class="card-body row">
+        <div id="table" class="table-editable btext col-12">
+          <table
+            class="table table-bordered table-responsive-md table-striped text-center"
+          >
+            <thead>
+              <tr class="row ml-1 mr-1">
+                <th class="text-center col">تاريخ التحليل</th>
+                <th class="text-center col">تناول الدواء</th>
+                <th class="text-center col">نتيجة التحليل</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr
+                  class="row ml-1 mr-1"
+                  *ngFor="let x of type1; let iii = index"
+                >
+                  <td class="pt-3-half col">{{ x.date | date }}</td>
+
+                  <td class="pt-3-half col">
+                    {{ x.medication }}
+                  </td>
+                  <td class="pt-3-half col">
+                    {{ x.result }}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow-lg">
+      <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+        صائم
+      </h3>
+      <div class="card-body row">
+        <div id="table" class="table-editable btext col-12">
+          <table
+            class="table table-bordered table-responsive-md table-striped text-center"
+          >
+            <thead>
+              <tr class="row ml-1 mr-1">
+                <th class="text-center col">تاريخ التحليل</th>
+                <th class="text-center col">تناول الدواء</th>
+                <th class="text-center col">نتيجة التحليل</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr
+                  class="row ml-1 mr-1"
+                  *ngFor="let x of type2; let i = index"
+                >
+                  <td class="pt-3-half col">{{ x.date | date }}</td>
+                  <td class="pt-3-half col">
+                    {{ x.medication }}
+                  </td>
+                  <td class="pt-3-half col">
+                    {{ x.result }}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-lg">
+      <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+        A1C
+      </h3>
+      <div class="card-body row">
+        <div id="table" class="table-editable btext col-12">
+          <table
+            class="table table-bordered table-responsive-md table-striped text-center"
+          >
+            <thead>
+              <tr class="row ml-1 mr-1">
+                <th class="text-center col">تاريخ التحليل</th>
+                <th class="text-center col">تناول الدواء</th>
+                <th class="text-center col">نتيجة التحليل</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr class="row ml-1 mr-1" *ngFor="let x of AC; let ii = index">
+                  <td class="pt-3-half col">{{ x.date | date }}</td>
+                  <td class="pt-3-half col">
+                    {{ x.medication }}
+                  </td>
+                  <td class="pt-3-half col">
+                    {{ x.result }}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

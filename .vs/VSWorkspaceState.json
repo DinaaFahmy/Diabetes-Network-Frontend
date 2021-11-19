@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\profile",
+    "\\src\\app\\shared\\profile\\saved-posts",
+    "\\src\\app\\shared\\questions",
+    "\\src\\app\\sidebar",
+    "\\src\\app\\signal-r",
+    "\\src\\app\\signal-r\\base"
+  ],
+  "SelectedNode": "\\src\\app\\patient\\test-dialog\\test-dialog.component.ts",
+  "PreviewInSolutionExplorer": false
+}

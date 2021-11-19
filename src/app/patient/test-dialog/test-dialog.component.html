@@ -1,0 +1,115 @@
+<div>
+  <div class="col-md-12 arabic justify-content-center">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+      اضافة تحليل
+    </h3>
+    <form [formGroup]="testForm">
+      <div class="form-group row arabic justify-content-center mt-4">
+        <label for="text" class="col-4 col-form-label">نوع التحليل</label>
+        <div class="col-8">
+          <select
+            matNativeControl
+            required
+            class="col-10 col-form-label form-control custom-select"
+            id="type"
+            name="type"
+            required="required"
+            formControlName="type"
+            (change)="changetype($event)"
+          >
+            <option value="" disabled [selected]="true">اختر نوع الفحص</option>
+            <option class="option1" value="0">A1C</option>
+            <option class="option1" value="2">صائم</option>
+            <option class="option1" value="1">عشوائى</option>
+          </select>
+        </div>
+      </div>
+
+      <div
+        class="text-danger"
+        *ngIf="
+          !this.testForm.get('type').valid && this.testForm.get('type').touched
+        "
+      >
+        برجاء اختيار نوع التحليل
+      </div>
+
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">تاريخ التحليل</label>
+        <div class="col-8">
+          <input
+            bsDatepicker
+            class="form-control col-10"
+            data-datepicker-color="danger"
+            [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+            placeholder="برجاء ادخال تاريخ التحليل"
+            formControlName="date"
+            id="datepicker"
+            type="text"
+            name="date"
+            [maxDate]="today"
+            ng-
+          />
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            !this.testForm.get('date').valid &&
+            this.testForm.get('date').touched
+          "
+        >
+          برجاء اختيار تاريخ التحليل
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">نتيجة التحليل</label>
+        <div class="col-8">
+          <input
+            class="col-10 col-form-label"
+            type="number"
+            id="result"
+            formControlName="result"
+            name="result"
+          />
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            !this.testForm.get('result').valid &&
+            this.testForm.get('result').touched
+          "
+        >
+          برجاء اختيار نتيجة التحليل
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">تناولت دوائى</label>
+        <div class="col-8">
+          <input
+            class="col-10 col-form-label"
+            type="checkbox"
+            id="med"
+            formControlName="med"
+            name="med"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-4 col-8"></div>
+      </div>
+    </form>
+    <div mat-dialog-actions>
+      <button
+        name="submit"
+        class="btn btn-success mr-3"
+        id="Addbtn"
+        [disabled]="!testForm.valid"
+        (click)="Add()"
+        [mat-dialog-close]="test"
+      >
+        اضافة
+      </button>
+    </div>
+  </div>
+</div>

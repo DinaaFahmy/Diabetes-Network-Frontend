@@ -1,0 +1,73 @@
+<div>
+  <div class="col-md-12 arabic justify-content-center">
+    <div class="arabic">
+      <h3 style="color: blue;">تعديل او اضافة دواء</h3>
+      <form [formGroup]="passForm">
+        <div class="form-group row arabic justify-content-center mt-4">
+          <div class="form-group row">
+            <label for="text" class="col-4 col-form-label">كلمة المرور</label>
+            <div class="col-8">
+              <input
+                class="col-10 col-form-label"
+                id="Password"
+                name="Password"
+                type="password"
+                required="required"
+                formControlName="Password"
+              />
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="
+                !this.passForm.get('Password').valid &&
+                this.passForm.get('Password').touched
+              "
+            >
+              ادخل كلمة المرور (الحد الادني لكلمة المرور 6 حروف)
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="text" class="col-4 col-form-label"
+              >تاكيد كلمة المرور
+            </label>
+            <div class="col-8">
+              <input
+                class="col-10 col-form-label"
+                type="password"
+                required="required"
+                id="ConfirmPassword"
+                formControlName="ConfirmPassword"
+                name="ConfirmPassword"
+              />
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="
+                !this.passForm.get('ConfirmPassword').valid &&
+                this.passForm.get('ConfirmPassword').touched
+              "
+            >
+              يجب تأكيد كلمة المرور
+            </div>
+            <div class="text-danger" *ngIf="IsPassMatch()">
+              كلمتا المرور غير متطابقتان
+            </div>
+          </div>
+        </div>
+      </form>
+      <div mat-dialog-actions>
+        <button
+          name="submit"
+          class="btn btn-success"
+          id="Addbtn"
+          [disabled]="!passForm.valid"
+          (click)="Add()"
+          [mat-dialog-close]=""
+        >
+          تعديل
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

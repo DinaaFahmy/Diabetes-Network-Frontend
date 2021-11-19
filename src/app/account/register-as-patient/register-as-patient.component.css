@@ -1,0 +1,8 @@
+.arabic {
+  direction: rtl;
+  text-align: right;
+}
+.option1 {
+  color: white;
+  background-color: #344675;
+}

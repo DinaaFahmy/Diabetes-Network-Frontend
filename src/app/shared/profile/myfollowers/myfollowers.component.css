@@ -1,0 +1,175 @@
+.arabic {
+  direction: rtl;
+  text-align: right;
+}
+.btext {
+  color: black;
+  font-weight: 300;
+}
+
+.example-card {
+  max-width: 2000px;
+  background-color: whitesmoke;
+}
+.example-card-for {
+  max-width: 800px;
+}
+
+.example-header-image {
+  background-image: url("https://bootdey.com/img/Content/avatar/avatar6.png");
+  background-size: cover;
+}
+form {
+  width: 50%;
+  padding-left: 45px;
+}
+
+.rightside {
+  font-size: large;
+  color: royalblue;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
+body {
+  font-family: "Muli-Regular";
+  color: #666;
+  font-size: 100px;
+  margin: 0;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: "Muli-Regular";
+  color: #333;
+  font-size: 13px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+:focus {
+  outline: none;
+}
+
+.wrapper {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+form {
+  width: 50%;
+  padding-left: 45px;
+}
+
+.form-group {
+  display: flex;
+}
+.form-group .form-wrapper {
+  width: 50%;
+}
+.form-group .form-wrapper:first-child {
+  margin-right: 20px;
+}
+
+.form-wrapper {
+  margin-bottom: 17px;
+}
+.form-wrapper label {
+  margin-bottom: 9px;
+  display: block;
+}
+.mirror {
+  /* margin: 0 auto;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    /* transform: scaleX(-1); */
+  /* filter: FlipH;
+    -ms-filter: "FlipH";
+    float: right; */
+}
+.form-control {
+  border: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 20px;
+  font-family: "Muli-Bold";
+  background: none;
+}
+.form-control:focus {
+  border: 1px solid #ae3c33;
+}
+@media (max-width: 991px) {
+  .inner {
+    min-width: 768px;
+  }
+}
+@media (max-width: 767px) {
+  .inner {
+    min-width: auto;
+    background: none;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  form {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+#my_f {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 4px 24px 1px grey;
+  color: black;
+  font-weight: 300;
+  text-decoration: black;
+}
+td {
+  color: black;
+}
+
+#fimg {
+  width: 30px;
+  height: 30px;
+}
+a {
+  color: black;
+}

@@ -1,0 +1,42 @@
+<div mat-dialog-content class="arabic text-right">
+    <mat-form-field>
+      <mat-label>{{data.key}}</mat-label>
+      <input matInput [(ngModel)]="p.content" />
+
+      <div style="margin-top: 30px;">
+    <mat-label >اختر تصنيف</mat-label>
+    <mat-select 
+    [(ngModel)]="p.CategoryName"  
+    >
+        <mat-option 
+          *ngFor="let item of c"
+          [value]="item.categoryName">
+        {{ item.categoryName }}
+      </mat-option>
+      </mat-select>
+</div>
+<div style="margin-top: 30px;">
+      <mat-label >اختر الحالة</mat-label>
+      <mat-select
+      [(ngModel)]="p.ReactionName"
+      >
+          <mat-option 
+            *ngFor="let item of r"
+            [value]="item.reactionName">
+          {{ item.reactionName }}
+        </mat-option>
+        </mat-select>
+
+    </div>
+  </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">الغاء</button>
+    <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+      أضف منشور
+    </button> -->
+    <button mat-button [mat-dialog-close] (click)="add()">
+        أضف منشور
+      </button>
+  </div>
+

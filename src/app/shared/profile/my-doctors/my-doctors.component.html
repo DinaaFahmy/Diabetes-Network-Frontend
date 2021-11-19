@@ -1,0 +1,83 @@
+<div class="card rounded-lg shadow-lg col-9" style="background-color: white;opacity: 90%;">
+  <table class="table text-center">
+    <tbody>
+      <tr *ngFor="let item of d_arr">
+        <td>
+          <label
+            class="uname"
+            id="{{ item.doctor_id }}"
+            [routerLink]="['/profile/', item.doctor_id, 'true']"
+            >{{ item.doctorName }}</label
+          >
+        </td>
+        <td>
+          <button
+            type="button"
+            rel="tooltip"
+            class="btn btn-danger btn-sm btn-icon tim-icons icon-simple-remove"
+            value="{{ item.doctor_id }}"
+            (click)="val($event)"
+          ></button>
+        </td>
+
+        <td *ngIf="item.access_med_info == 0 || item.access_med_info == 3">
+          <label
+            style="text-decoration: none; cursor: pointer;"
+            id="access_med_info"
+          >
+            غير مسموح للوصول لبياناتي الطبية</label
+          >
+        </td>
+        <td *ngIf="item.access_med_info == 0 || item.access_med_info == 3">
+          <button
+            class="btn btn-success"
+            for="access_med_info"
+            value="{{ item.id }},{{ item.access_med_info }}"
+            (click)="changeAcess($event)"
+          >
+            تغيير
+          </button>
+        </td>
+
+        <td *ngIf="item.access_med_info == 2">
+          <label
+            style="text-decoration: none; cursor: pointer;"
+            id="access_med_info"
+          >
+            مسموح للوصول لبياناتي الطبية</label
+          >
+        </td>
+        <td *ngIf="item.access_med_info == 2">
+          <button
+            class="btn btn-success"
+            for="access_med_info"
+            value="{{ item.id }},{{ item.access_med_info }}"
+            (click)="changeAcess($event)"
+          >
+            تغيير
+          </button>
+        </td>
+
+        <td *ngIf="item.access_med_info == 1">
+          <label
+            style="text-decoration: none; cursor: pointer;"
+            id="access_med_info"
+          >
+            طلب الوصول لبياناتي الطبية</label
+          >
+        </td>
+        <td *ngIf="item.access_med_info == 1">
+          <button
+            class="btn btn-info"
+            for="access_med_info"
+            value="{{ item.id }},{{ item.access_med_info }}"
+            (click)="changeAcess($event)"
+          >
+            قبول
+          </button>
+        </td>
+        <hr />
+      </tr>
+    </tbody>
+  </table>
+</div>
